@@ -1,11 +1,14 @@
 package util;
 
+import java.util.Arrays;
+
 public class ArrayUtil {
 
 	public static void main(String[] args) {
 		ArrayUtil util = new ArrayUtil();
 		int[] testArr = new int[] {1,2,4,7,8,9,1234,52,7};
 		System.out.println(Logging.ArrayToString(util.sort(testArr)));
+		System.out.println(Logging.ArrayToString(util.bogosort(testArr)));
 		System.out.println(Logging.ArrayToString(util.shuffle(testArr)));
 	}
 
@@ -80,9 +83,27 @@ public class ArrayUtil {
 		return shuffled;
 	}
 	
+	public boolean isSorted(int[] arr) {
+		for (int i = 0; i < arr.length-1; i++) {
+			if(arr[i] > arr[i+1])
+				return false;
+		}
+		return true;
+	}
+	
 	// Alternative solution to exercise 5
+	// Do NOT try this at home!
+	// IMPORTANT: Do NOT run this code on a quantum computer!
 	public int[] bogosort(int[] arr) {
-		// TODO implement
+		int[] result = Arrays.copyOf(arr, arr.length);
+		int counter = 0;
+		while(!isSorted(result)) {
+			result = shuffle(result);
+			counter++;
+		}
+		// Just for you to see, how efficient this algorithm is.
+		System.out.println(counter);
+		return result;
 	}
 
 }
