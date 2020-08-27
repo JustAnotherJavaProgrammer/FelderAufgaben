@@ -4,7 +4,9 @@ public class ArrayUtil {
 
 	public static void main(String[] args) {
 		ArrayUtil util = new ArrayUtil();
-		System.out.println(Logging.ArrayToString(util.sort(new int[] {1,2,4,7,8,9,1234,52,7})));
+		int[] testArr = new int[] {1,2,4,7,8,9,1234,52,7};
+		System.out.println(Logging.ArrayToString(util.sort(testArr)));
+		System.out.println(Logging.ArrayToString(util.shuffle(testArr)));
 	}
 
 	public int max(int[] arr) {
@@ -50,6 +52,7 @@ public class ArrayUtil {
 	}
 	
 	public int[] sort(int[] arr) {
+		arr = arr.clone();
 		int[] sorted = new int[arr.length];
 		for (int i = 0; i < sorted.length; i++) {
 			int index = minIndex(arr);
@@ -64,8 +67,22 @@ public class ArrayUtil {
 	}
 	
 	public int[] shuffle(int[] arr) {
-		// TODO implement shuffle
-		return null;
+		int[] shuffled = new int[arr.length];
+		boolean[] taken = new boolean[arr.length];
+		for (int i = 0; i < shuffled.length; i++) {
+			int rnd = (int) (Math.random()*arr.length);
+			while(taken[rnd]) {
+				rnd = (int) (Math.random()*arr.length);
+			}
+			shuffled[i] = arr[rnd];
+			taken[rnd] = true;
+		}
+		return shuffled;
+	}
+	
+	// Alternative solution to exercise 5
+	public int[] bogosort(int[] arr) {
+		// TODO implement
 	}
 
 }

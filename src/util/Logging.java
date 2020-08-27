@@ -10,4 +10,14 @@ public class Logging {
 		res.append(" ]");
 		return res.toString();
 	}
+	
+	public static String ArrayToString2D(int[][] arr) {
+		StringBuilder res = new StringBuilder("[\n\t");
+		res.append(ArrayToString(arr[0]));
+		for (int i = 1; i < arr.length; i++) {
+			res.append(",\n\t").append(ArrayToString(arr[i]));
+		}
+		res.append("\n]");
+		return res.toString();
+	}
 }
